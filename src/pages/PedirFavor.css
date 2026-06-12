@@ -1,0 +1,188 @@
+.pedir {
+  background: var(--lilac);
+  padding-bottom: 70px;
+}
+
+.pedir__title {
+  font-size: clamp(2.6rem, 8.5vw, 7rem);
+  text-align: center;
+  padding: 10px 4vw 40px;
+}
+
+.pedir__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr 1fr;
+  gap: 3vw;
+  padding: 0 5vw;
+  align-items: start;
+}
+
+.pedir__col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pedir__subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  text-align: center;
+  margin-top: 0.8rem;
+}
+
+.pedir__error {
+  color: #8f1d2c;
+  font-size: 0.62rem;
+  display: block;
+  margin-top: 4px;
+}
+
+.pedir__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.pedir__textarea {
+  border-radius: 24px;
+  resize: vertical;
+  min-height: 86px;
+}
+
+.pedir__aviso {
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--cream);
+  border: var(--stroke);
+  border-radius: 14px;
+  padding: 10px 14px;
+}
+
+.pedir__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.pedir__selects {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pedir__selects .input-pill {
+  cursor: pointer;
+  appearance: none;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ---------- Checkboxes animados ---------- */
+.pedir__check {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pedir__check input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pedir__checkbox {
+  width: 24px;
+  height: 24px;
+  border: var(--stroke);
+  border-radius: 7px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.2s;
+  background: transparent;
+}
+
+.pedir__check input:checked + .pedir__checkbox {
+  background: var(--ink);
+  transform: rotate(6deg) scale(1.08);
+}
+
+.pedir__check input:checked + .pedir__checkbox::after {
+  content: '✓';
+  color: var(--yellow);
+  font-weight: 900;
+  font-size: 0.85rem;
+}
+
+.pedir__confirm {
+  margin-top: 1.4rem;
+}
+
+.pedir__hint {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0.75;
+}
+
+.pedir__success {
+  background: var(--yellow);
+  border: var(--stroke);
+  border-radius: 18px;
+  padding: 14px 18px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 4px 5px 0 var(--ink);
+}
+
+/* ---------- Responsive ---------- */
+/* Tablet: dos columnas y la confirmación ocupa el ancho completo */
+@media (max-width: 1100px) {
+  .pedir__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 3vw;
+  }
+
+  .pedir__col:nth-child(3) {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 560px;
+    justify-self: center;
+  }
+}
+
+/* Móvil: flujo en una sola columna a ancho completo */
+@media (max-width: 768px) {
+  .pedir__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 7vw;
+  }
+
+  .pedir__col:nth-child(3) {
+    max-width: none;
+  }
+
+  .pedir__title {
+    padding-bottom: 26px;
+  }
+
+  .pedir__selects {
+    flex-direction: column;
+  }
+}
+
+/* Pantallas muy grandes: contener con márgenes amplios */
+@media (min-width: 1600px) {
+  .pedir__grid {
+    max-width: 1500px;
+    margin-inline: auto;
+  }
+}

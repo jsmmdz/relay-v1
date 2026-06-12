@@ -1,0 +1,198 @@
+/* .page.mkt: especificidad doble para ganarle al padding-top de .page
+   (global.css se importa después y dejaba una franja amarilla arriba) */
+.page.mkt {
+  padding-top: 0;
+  background: var(--yellow);
+  display: flex;
+  flex-direction: column;
+  /* recorta los bordes sobredimensionados del blob sin crear scroll */
+  overflow-x: clip;
+}
+
+/* ---------- Cabecera lila ---------- */
+/* Fondo sólido y altura dictada por el contenido: al desplegar el panel
+   de propiedades, el morado crece y empuja la curva y el muro */
+.mkt__head {
+  position: relative;
+  min-height: 340px;
+  background: var(--lilac);
+}
+
+/* Banda divisoria lila → amarillo, en flujo normal. El margen superior
+   negativo la solapa con la cabecera sólida y los laterales negativos
+   cubren los extremos de la animación de deriva (recortados por
+   overflow-x: clip del main). */
+.mkt__wave {
+  height: 240px;
+  margin-top: -50px;
+  margin-inline: -60px;
+  pointer-events: none;
+}
+
+.mkt__head-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  /* aire extra entre "Propiedades" y el inicio del muro de burbujas */
+  padding: 92px 5vw 56px;
+}
+
+.mkt__head-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: min(480px, 100%);
+}
+
+.mkt__title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+}
+
+.mkt__filters {
+  display: flex;
+  /* los 3 filtros siempre en una sola fila */
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mkt__filters .pill {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.mkt__filter-options,
+.mkt__props {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  overflow: hidden;
+}
+
+.mkt__option {
+  font-size: 0.65rem;
+  padding: 0.45rem 1rem;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.mkt__search,
+.mkt__props-toggle {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.mkt__mascot {
+  flex-shrink: 0;
+  animation: blob-float 6s ease-in-out infinite;
+}
+
+/* ---------- Tablero amarillo ---------- */
+.mkt__board {
+  flex: 1;
+  padding: 0;
+}
+
+/* ---------- Scroll pinning ---------- */
+/* Contenedor extendido: su altura (100vh + recorrido horizontal) es la
+   "pista de aterrizaje" que consume el scroll vertical nativo */
+.mkt__pin {
+  position: relative;
+}
+
+/* Vista fijada mientras se cruza el contenedor extendido */
+.mkt__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Pista de burbujas: el progreso del scroll se mapea a translateX */
+.mkt__track {
+  --scatter: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4rem;
+  min-width: 180vw;
+  width: max-content;
+  padding: 0 6vw;
+  will-change: transform;
+}
+
+.mkt__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.85;
+  text-align: center;
+  padding: 0 5vw;
+}
+
+.mkt__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  text-align: center;
+  padding: 60px 5vw;
+}
+
+.mkt__empty h2 {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  max-width: 560px;
+}
+
+/* ---------- Responsive ---------- */
+/* Móvil y tablet: cabecera en columna a ancho completo */
+@media (max-width: 768px) {
+  .mkt__wave {
+    height: 160px;
+    margin-top: -40px;
+  }
+
+  .mkt__head-content {
+    flex-direction: column;
+    padding: 84px 6vw 44px;
+  }
+
+  .mkt__head-left {
+    width: 100%;
+  }
+
+  .mkt__mascot {
+    display: none;
+  }
+
+  .mkt__track {
+    --scatter: 0.45;
+    gap: 2rem;
+  }
+}
+
+/* Pantallas muy grandes: márgenes amplios */
+@media (min-width: 1600px) {
+  .mkt__head-content,
+  .mkt__track,
+  .mkt__hint {
+    padding-inline: 12vw;
+  }
+}

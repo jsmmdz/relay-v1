@@ -1,0 +1,57 @@
+.phasebar {
+  padding: 26px 30px 44px;
+}
+
+.phasebar__track {
+  position: relative;
+  height: 14px;
+  border-radius: 99px;
+  background: #cfc2f5;
+  border: 2px solid var(--ink);
+}
+
+.phasebar__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 99px;
+  background: var(--ink);
+}
+
+.phasebar__node {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phasebar__label {
+  position: absolute;
+  top: 36px;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.65;
+}
+
+.phasebar__label.is-current {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Móvil pequeño: las etiquetas envuelven para no solaparse */
+@media (max-width: 480px) {
+  .phasebar {
+    padding: 22px 18px 60px;
+  }
+
+  .phasebar__label {
+    white-space: normal;
+    max-width: 66px;
+    text-align: center;
+  }
+}

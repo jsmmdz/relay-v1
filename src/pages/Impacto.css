@@ -1,0 +1,181 @@
+.impacto {
+  background: var(--yellow);
+  padding-top: 0;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.impacto__blob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* cubre título + copy; la curva divisoria queda por debajo de ambos */
+  height: 560px;
+  z-index: 0;
+}
+
+.impacto__head {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 120px 5vw 170px;
+  color: #fff;
+}
+
+.impacto__head h1 {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+}
+
+.impacto__sub {
+  font-weight: 600;
+  margin-top: 0.8rem;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.impacto__stats {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3vw;
+  padding: 50px 5vw;
+}
+
+.impacto__stat {
+  position: relative;
+  width: clamp(160px, 19vw, 230px);
+  /* círculo perfecto: padding fijo (el % se resolvía contra el ancho del
+     padre e inflaba la altura mínima por encima del ancho) */
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  padding: 18px;
+  box-shadow: inset -8px -10px 22px rgba(0, 0, 0, 0.12);
+  animation: blob-float 5.5s ease-in-out infinite;
+}
+
+.impacto__stat:nth-child(even) {
+  animation-delay: 1.4s;
+}
+
+.impacto__shine {
+  position: absolute;
+  top: 10%;
+  left: 16%;
+  width: 26%;
+  height: 15%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: rotate(-24deg);
+  filter: blur(1px);
+}
+
+.impacto__num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  line-height: 1;
+}
+
+.impacto__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.impacto__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  padding: 40px 5vw;
+}
+
+.impacto__cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 460px;
+}
+
+.impacto__cta-text h2 {
+  font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+}
+
+.impacto__cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.impacto__cta-actions .pill--yellow {
+  background: var(--lilac);
+}
+
+.impacto__reset {
+  display: block;
+  margin: 30px auto 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.impacto__reset:hover {
+  opacity: 1;
+}
+
+/* ---------- Responsive ---------- */
+/* Móvil y tablet: flujo en columna y centrado */
+@media (max-width: 768px) {
+  .impacto__blob {
+    height: 420px;
+  }
+
+  .impacto__head {
+    padding: 100px 5vw 120px;
+  }
+
+  .impacto__stats {
+    gap: 6vw;
+    padding: 36px 6vw;
+  }
+
+  .impacto__cta {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .impacto__cta-text {
+    align-items: center;
+  }
+
+  .impacto__cta-actions {
+    justify-content: center;
+  }
+}
+
+/* Pantallas muy grandes: contener con márgenes amplios */
+@media (min-width: 1600px) {
+  .impacto__stats,
+  .impacto__cta {
+    max-width: 1500px;
+    margin-inline: auto;
+  }
+}

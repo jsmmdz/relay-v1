@@ -1,0 +1,84 @@
+/* Barra minimalista que crece en hover y revela íconos por sección */
+
+.navbar {
+  position: fixed;
+  top: 16px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  /* La franja ocupa todo el ancho solo para centrar: no debe bloquear clicks */
+  pointer-events: none;
+}
+
+.navbar__capsule {
+  pointer-events: auto;
+}
+
+.navbar__capsule {
+  display: flex;
+  gap: 6px;
+  padding: 6px 10px;
+  border: var(--stroke);
+  border-radius: var(--radius-pill);
+  /* transparente: hereda el fondo de la sección y evita el parche visual */
+  background: transparent;
+  transition: padding 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.navbar__item {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 34px;
+  padding: 0 9px;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+.navbar__icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.navbar__label {
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* En hover, la barra crece y revela las etiquetas */
+.navbar__capsule:hover .navbar__item .navbar__label,
+.navbar__item.is-active .navbar__label {
+  max-width: 140px;
+  opacity: 1;
+  margin-left: 7px;
+}
+
+.navbar__item:hover {
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.navbar__item.is-active {
+  background: var(--ink);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .navbar__capsule:hover .navbar__item:not(.is-active) .navbar__label {
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+  }
+}

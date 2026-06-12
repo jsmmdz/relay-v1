@@ -1,0 +1,235 @@
+.home {
+  background: var(--lilac);
+}
+
+/* ---------- HERO ---------- */
+.home-hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 5vw 40px;
+}
+
+.home-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  font-size: clamp(4.5rem, 17vw, 15rem);
+  /* lettering inflado tipo globo de gel (SVG custom en BubbleLetter) */
+  filter: drop-shadow(0 10px 0 rgba(18, 18, 18, 0.12));
+}
+
+.bubble-letter {
+  display: block;
+  height: 1.05em;
+  width: auto;
+  user-select: none;
+}
+
+/* Rebote de línea base e inclinación propia de cada letra (como en el cartel) */
+.home-logo__letter:nth-child(1) .bubble-letter { transform: rotate(-2deg); }
+.home-logo__letter:nth-child(2) .bubble-letter { transform: rotate(3deg) translateY(-2%); }
+.home-logo__letter:nth-child(3) .bubble-letter { transform: rotate(-3deg) translateY(1%); }
+.home-logo__letter:nth-child(4) .bubble-letter { transform: rotate(5deg) translateY(-2%); }
+.home-logo__letter:nth-child(5) .bubble-letter { transform: rotate(7deg) translateY(5%); }
+
+.home-logo__letter {
+  display: inline-block;
+  animation: letter-bob 3.4s ease-in-out infinite;
+}
+
+.home-logo__letter:nth-child(odd) {
+  animation-delay: 0.6s;
+}
+
+.home-logo__letter:nth-child(3n) {
+  animation-delay: 1.2s;
+}
+
+@keyframes letter-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-1.5deg); }
+}
+
+.home-tagline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.8vw, 1.25rem);
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+.home-tagline--left {
+  align-self: flex-start;
+  transform: rotate(-8deg);
+  margin: 5vh 0 0 6vw;
+}
+
+.home-tagline--right {
+  align-self: flex-end;
+  transform: rotate(6deg);
+  margin: -2vh 8vw 0 0;
+}
+
+.home-tagline--center {
+  margin-top: 4vh;
+  transform: rotate(-3deg);
+  text-align: center;
+}
+
+.home-hero__scroll {
+  margin-top: 5vh;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+/* ---------- Transición líquida ---------- */
+.home-wave {
+  height: 240px;
+  margin-bottom: -2px;
+}
+
+/* ---------- CTAs ---------- */
+.home-ctas {
+  background: var(--yellow);
+  padding: 4vh 8vw 10vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16vh;
+}
+
+.home-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  max-width: 640px;
+}
+
+.home-cta--right {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.home-cta--right .home-cta__action {
+  justify-content: flex-end;
+}
+
+.home-cta__title {
+  font-size: clamp(2rem, 5.5vw, 4.2rem);
+}
+
+.home-cta__action {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  min-height: 64px;
+}
+
+.home-cta__action .pill--yellow {
+  background: var(--lilac);
+}
+
+.home-cta__reveal {
+  position: absolute;
+  bottom: 56px;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.home-cta--right .home-cta__reveal {
+  left: auto;
+  right: 0;
+  flex-direction: row-reverse;
+}
+
+.home-cta__smiley {
+  width: 130px;
+  height: auto;
+  user-select: none;
+}
+
+.home-cta__sign {
+  max-width: 260px;
+  padding: 14px 18px;
+  border: var(--stroke);
+  border-radius: 18px;
+  background: var(--cream);
+  box-shadow: 4px 5px 0 var(--ink);
+  font-weight: 600;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  margin-bottom: 40px;
+}
+
+.home-footer__smiley {
+  width: 96px;
+  height: auto;
+  user-select: none;
+}
+
+.home-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* ---------- Responsive ---------- */
+/* Móvil y tablet: flujo en columna, ancho completo, aire generoso */
+@media (max-width: 768px) {
+  .home-cta__reveal {
+    display: none;
+  }
+
+  .home-hero {
+    min-height: 86vh;
+    padding: 90px 6vw 30px;
+  }
+
+  .home-tagline--left {
+    margin: 6vh 0 0 2vw;
+  }
+
+  .home-tagline--right {
+    margin: 0 2vw 0 0;
+  }
+
+  .home-ctas {
+    padding: 6vh 7vw 12vh;
+    gap: 11vh;
+  }
+
+  .home-cta {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .home-cta--right {
+    align-self: stretch;
+    text-align: left;
+  }
+
+  .home-cta--right .home-cta__action {
+    justify-content: flex-start;
+  }
+}
+
+/* Pantallas muy grandes: contener el contenido con márgenes amplios */
+@media (min-width: 1600px) {
+  .home-ctas {
+    padding-inline: 14vw;
+  }
+}
